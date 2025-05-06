@@ -368,9 +368,10 @@ public class Main extends JFrame implements KeyListener {
         clear_lines++;
         lines++;
         dropPlaced(i);
+        levelUp();
+        getScore(clear_lines);
       }
     }
-    getScore(clear_lines);
   }
 
   public void dropPlaced(int clear_idx){
@@ -397,6 +398,15 @@ public class Main extends JFrame implements KeyListener {
     else if(lines == 4){
       score += 1200 * (level+1);
     }
+  }
+
+  public boolean levelUp(){
+    if(lines % 10 == 0){
+      level++;
+      drop_ratio *= 0.90;
+      return true;
+    }
+    return false;
   }
 
   public void gameover(){
